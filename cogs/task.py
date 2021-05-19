@@ -49,7 +49,7 @@ class Task(CogExtension):
         if dynamic_schedule["reset"]:
             return
 
-        if Time.in_time_range(Time.get_info('schedule'), '19 00,21 00'):
+        if Time.in_time_range(Time.get_info('schedule'), '19 00,23 00'):
             for index in range(7):
                 dynamic_schedule['switch_bool'][str(index + 1)] = False
 
