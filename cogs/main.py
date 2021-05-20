@@ -52,6 +52,20 @@ class Main(CogExtension):
                 )
                 break
 
+    @commands.command()
+    async def reset(self, ctx, current_schedule: int = None):
+        dynamic_schedule = JsonApi().get('DynamicSetting')
+
+        dynamic_schedule['reset'] = False
+        for index in range(7):
+            dynamic_schedule['switch_bool'][str(index + 1)] = False
+
+        if current_schedule is not None:
+            for index in range(current_schedule):
+                dynamic_schedule['switch_bool'][str(index + 1)] = True
+
+        await ctx.send(':white_check_mark: 指令執行完畢！')
+
 
 def setup(bot):
     bot.add_cog(Main(bot))
